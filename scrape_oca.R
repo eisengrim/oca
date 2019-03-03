@@ -33,8 +33,9 @@ for (url in urls){
   destination <- regmatches(links, regex_match)
 
   # download all files found, pausing between downloads to prevent overload
+  # encode link to pdf with %20, escaping whitespaces
   for(i in seq_along(links)){
-    download.file(paste0(master, links[i]), destfile=destination[i])
+    download.file(URLencode(paste0(master, links[i])), destfile=destination[i])
     Sys.sleep(runif(1, 1, 5))
   }
 }
